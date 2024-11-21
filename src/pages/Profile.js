@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Logout from '../components/Logout';
+import Cookies from 'js-cookie';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -9,7 +10,11 @@ const Profile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/me', { withCredentials: true });
+        const response = await axios.get('http://localhost:8000/me', {
+          headers: {
+            Authorization: `Bearer ${Cookies.get('access_token')}`,
+          },
+        });
         setUser(response.data);
       } catch (err) {
         setError('Failed to fetch user details.');

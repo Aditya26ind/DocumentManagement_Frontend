@@ -4,6 +4,7 @@ import QueryForm from '../components/QueryForm';
 import { Link } from 'react-router-dom';
 import Logout from '../components/Logout';
 
+
 const Home = () => {
   return (
     <div>

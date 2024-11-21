@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Logout from '../components/Logout';
+import Cookies from 'js-cookie';
 
 const DocumentDetails = () => {
   const { id } = useParams();
@@ -12,7 +13,11 @@ const DocumentDetails = () => {
   useEffect(() => {
     const fetchDocument = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/documents/${id}`);
+        const response = await axios.get(`${BASE_URL}/documents/${id}`,{
+          headers: {
+            Authorization: `Bearer ${Cookies.get('access_token')}`,
+          },
+        });
         setDocument(response.data);
       } catch (err) {
         setError('Failed to fetch document details.');
