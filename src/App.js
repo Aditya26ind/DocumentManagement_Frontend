@@ -11,9 +11,9 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/auth" element={<AuthForm />} />
-        <Route path="/" element={<Home /> }/>
-        <Route path="/search" element={<Search />} />
-        <Route path="/documents/:id" element={<DocumentDetails />} />
+        <Route path="/" element={<ProtectedRoute><Home /> </ProtectedRoute>}/>
+        <Route path="/search" element={<ProtectedRoute><Search /> </ProtectedRoute>}/>
+        <Route path="/documents/:id" element={<ProtectedRoute><DocumentDetails /> </ProtectedRoute>}/>
       </Routes>
     </Router>
   );

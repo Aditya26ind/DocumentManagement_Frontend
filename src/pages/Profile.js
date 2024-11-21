@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Logout from '../components/Logout';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -22,6 +23,7 @@ const Profile = () => {
 
   return (
     <div>
+      <Logout/>
       <h1>User Profile</h1>
       {user ? (
         <div>

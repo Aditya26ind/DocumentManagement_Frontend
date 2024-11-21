@@ -1,18 +1,33 @@
 import React from 'react';
-import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const Logout = () => {
+  const navigate = useNavigate(); // Hook for programmatic navigation
+
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:8000/logout', {}, { withCredentials: true });
-      window.location.href = '/auth';
+      // Remove the token
+      Cookies.remove('access_token');
+
+      // Redirect to the login page
+      navigate('/auth');
     } catch (error) {
       console.error('Logout failed:', error);
     }
   };
 
   return (
-    <button onClick={handleLogout} style={{ padding: '8px 16px', backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '4px' }}>
+    <button
+      onClick={handleLogout}
+      style={{
+        padding: '8px 16px',
+        backgroundColor: 'red',
+        color: 'white',
+        border: 'none',
+        borderRadius: '4px',
+      }}
+    >
       Logout
     </button>
   );
