@@ -4,11 +4,12 @@ import Cookies from 'js-cookie';
 
 const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true); 
+  const BASE_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
 
   const checkAuth = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/auth/check-auth', {
+      const response = await axios.get(`${BASE_URL}/auth/check-auth`, {
         headers: {
           Authorization: `Bearer ${Cookies.get('access_token')}`,
         },

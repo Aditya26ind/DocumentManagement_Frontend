@@ -7,11 +7,12 @@ const DocumentDetails = () => {
   const { id } = useParams();
   const [document, setDocument] = useState(null);
   const [error, setError] = useState('');
+  const BASE_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
 
   useEffect(() => {
     const fetchDocument = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/documents/${id}`);
+        const response = await axios.get(`${BASE_URL}/documents/${id}`);
         setDocument(response.data);
       } catch (err) {
         setError('Failed to fetch document details.');
